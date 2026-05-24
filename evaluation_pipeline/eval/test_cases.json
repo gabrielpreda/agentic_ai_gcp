@@ -1,0 +1,23 @@
+[
+    {
+      "id": "top_country",
+      "prompt": "Which country has the highest revenue?",
+      "expected_keywords": [
+        "Germany",
+        "240000"
+      ],
+      "must_not_include": [
+        "Spain"
+      ]
+    },
+    {
+      "id": "total_revenue",
+      "prompt": "What is the total revenue?",
+      "expected_keywords": [
+        "980000"
+      ],
+      "must_not_include": [
+        "1000000"
+      ]
+    }
+  ]

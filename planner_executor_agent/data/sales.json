@@ -1,0 +1,22 @@
+[
+    {
+    "country": "Germany",
+    "revenue": 240000
+    },
+    {
+    "country": "France",
+    "revenue": 210000
+    },
+    {
+        "country": "Poland",
+        "revenue": 200000
+    },
+    {
+    "country": "Romania",
+    "revenue": 180000
+    },
+    {
+        "country": "Italy",
+        "revenue": 150000
+    }
+]
