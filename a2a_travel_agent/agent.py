@@ -1,4 +1,5 @@
 import os
+import logging
 
 from dotenv import load_dotenv
 
@@ -18,8 +19,18 @@ from discovery import remote_discovery_agent
 from routing import remote_routing_agent
 
 
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+)
+
+logger = logging.getLogger("travel_agent")
+
 load_dotenv()
 
+
+logger.info("Loading Travel Assistant Agent...")
 
 host_instruction_prompt = """
 You are a travel coordinator agent.
@@ -93,23 +104,43 @@ root_agent_card = AgentCard(
     ],
 )
 
+logger.info(
+    "Agent Card created. URL=%s, Transport=%s",
+    root_agent_card.url,
+    root_agent_card.preferred_transport,
+)
+
+logger.info("Creating A2A server...")
 
 a2a_app = create_agent_a2a_server(
     agent=root_agent,
     agent_card=root_agent_card,
 )
 
+logger.info("A2A server created successfully")
+
 application = a2a_app.build()
+
+logger.info("Starlette application built")
 
 
 def main():
     import uvicorn
 
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", "10022"))
+
+    logger.info(
+        "Starting Travel Agent on %s:%s",
+        host,
+        port,
+    )
+
     uvicorn.run(
         "agent:application",
-        host=os.getenv("HOST", "0.0.0.0"),
-        port=int(os.getenv("PORT", "10022")),
-        log_level=os.getenv("LOG_LEVEL", "info"),
+        host=host,
+        port=port,
+        log_level=os.getenv("LOG_LEVEL", "debug"),
         reload=os.getenv("RELOAD", "false").lower() == "true",
     )
 
