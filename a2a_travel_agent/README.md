@@ -45,7 +45,7 @@ concurrently \
 "uvicorn discovery:application --host 0.0.0.0 --port 10020" \
 "uvicorn routing:application --host 0.0.0.0 --port 10021" \
 "uvicorn agent:application --host 0.0.0.0 --port 10022" \
-"uvicorn main:app --host 0.0.0.0 --port 8005"
+"uvicorn main:app --host 0.0.0.0 --port 8000"
 ```
 
 In order to show more detailed logs, run instead:
