@@ -1,0 +1,37 @@
+[
+    {
+      "id": "top_country",
+      "prompt": "Which country has the highest revenue?",
+      "expected_output": "Germany has the highest revenue with 240000.",
+      "expected_keywords": ["Germany", "240000"],
+      "must_not_include": ["Spain"]
+    },
+    {
+      "id": "total_revenue",
+      "prompt": "What is the total revenue?",
+      "expected_output": "The total revenue is 980000.",
+      "expected_keywords": ["980000"],
+      "must_not_include": ["1000000", "Germany"]
+    },
+    {
+      "id": "lowest_country",
+      "prompt": "Which country has the lowest revenue?",
+      "expected_output": "Italy has the lowest revenue with 150000.",
+      "expected_keywords": ["Italy", "150000"],
+      "must_not_include": ["Germany", "Spain", "980000"]
+    },
+    {
+      "id": "ranked_revenue",
+      "prompt": "List the countries from highest to lowest revenue.",
+      "expected_output": "Germany 240000, France 210000, Poland 200000, Romania 180000, Italy 150000.",
+      "expected_keywords": ["Germany", "France", "Poland", "Romania", "Italy"],
+      "must_not_include": ["Spain"]
+    },
+    {
+      "id": "no_fake_country",
+      "prompt": "Is Spain included in the sales data?",
+      "expected_output": "No, Spain is not included in the sales data.",
+      "expected_keywords": ["Spain", "not included"],
+      "must_not_include": ["240000", "980000", "Germany"]
+    }
+  ]
