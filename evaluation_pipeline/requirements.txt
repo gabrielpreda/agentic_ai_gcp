@@ -1,0 +1,7 @@
+google-adk
+google-genai
+google-cloud-aiplatform
+fastapi
+uvicorn
+httpx
+python-dotenv
