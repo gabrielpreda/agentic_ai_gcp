@@ -39,7 +39,7 @@ Learning Agentic AI with GCP - using ADK, A2A, Agent Platform, Agent Engine
 |----------|---------|
 |  [planner_executor_agent](planner_executor_agent) | Combination of deterministic sequence: planner-executor-reporter with dynamic routing using AgentTool by executor (uses two tools) |
 |  [a2a_travel_agent](a2a_travel_agent) | Agent to Agent collaboration framework application: travel agent uses discovery and routing agents as services |
-|  [evaluation_pipeline](evaluation_pipeline) | Evaluation using rule-based judge for an ADK Agent |
+|  [evaluation_pipeline](evaluation_pipeline) | Evaluation using rule-based judge for an ADK Agent. Evolve the solution to use DeepEval based evaluation. |
 
 
 ## Part 4 - Production and Governance
