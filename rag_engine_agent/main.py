@@ -1,0 +1,119 @@
+import os
+import logging
+import asyncio
+import uuid
+from typing import List
+
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
+from google.genai.types import Content, Part
+
+
+
+from adk_rag_agent.agent import root_agent as rag_agent
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+APP_NAME = "adk-rag-agent"
+USER_ID = os.getenv("USER_ID", "user")
+SESSION_ID = str(uuid.uuid4())
+
+logger = logging.getLogger(APP_NAME)
+logger.setLevel(logging.INFO)
+
+
+app = FastAPI()
+runner: Runner = None
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class QueryRequest(BaseModel):
+    query: str
+    history: list[str] = []
+
+
+def build_content_from_history_and_query(query: str, history: List[str]) -> Content:
+    parts = []
+
+    # Include the history as prior messages
+    for h in history:
+        # optionally split "User: ...\nAgent: ..." if needed
+        if "User:" in h and "Agent:" in h:
+            user_part = h.split("User:")[1].split("Agent:")[0].strip()
+            agent_part = h.split("Agent:")[1].strip()
+            parts.append(Part(text=user_part))
+            parts.append(Part(text=agent_part))
+        else:
+            parts.append(Part(text=h))
+
+    # Add the current query
+    parts.append(Part(text=query))
+
+    return Content(role="user", parts=parts)
+
+
+@app.on_event("startup")
+async def init_runner():
+    """
+    Init runner
+    Args:  
+        None
+    Returns:
+        None
+    """
+    global runner
+    session_service = InMemorySessionService()
+    await session_service.create_session(
+        app_name=APP_NAME,
+        user_id=USER_ID,
+        session_id=SESSION_ID,
+    )
+    runner = Runner(
+        agent=rag_agent,
+        app_name=APP_NAME,
+        session_service=session_service,
+    )
+    logger.info("Runner initialized and session created.")
+
+@app.get("/status")
+async def get_status():
+    return {"status": "OK"}
+
+@app.post("/query")
+async def process_query(req: QueryRequest):
+
+    global runner
+
+    content = build_content_from_history_and_query(query=req.query, 
+                                                   history=req.history)
+    
+    response_text = ""
+    async for event in runner.run_async(
+        user_id=USER_ID,
+        session_id=SESSION_ID,
+        new_message=content
+    ):
+        if event.is_final_response():
+            if event.content and event.content.parts:
+                part_text = event.content.parts[0].text
+                response_text += part_text + "\n"
+            elif event.actions and event.actions.escalate:
+                response_text += f"Agent escalated: {event.error_message or 'No specific message.'}\n"
+            # Do not break here, wait for all agents in the sequence to finish
+    logger.info("System response: {response_text}")
+    return {"response_text": response_text}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)
