@@ -1,0 +1,49 @@
+# Reference configuration for the ADK RAG Agent deployment.
+# Note: `adk deploy agent_engine` does NOT consume this YAML directly.
+# Runtime env vars are passed via --env_file=.env in deploy.sh.
+apiVersion: agent-engine.google.com/v1
+kind: Agent
+metadata:
+  name: adk-rag-agent
+  description: "Multi-agent RAG system"
+spec:
+  # The main agent entry point
+  agent:
+    module: adk_rag_agent.agent
+    name: root_agent
+  
+  # Runtime configuration
+  runtime:
+    python_version: "3.11"
+    
+  # Environment variables
+  env:
+    - name: GOOGLE_GENAI_USE_VERTEXAI
+      value: "TRUE"
+    - name: GOOGLE_CLOUD_PROJECT
+      valueFrom:
+        projectId: true
+    - name: GOOGLE_CLOUD_LOCATION
+      valueFrom:
+        region: true
+    - name: GCS_URI
+      value: "gs://gemini-first-eu-ai-act/data/ai-act-regulation-eu-20241689.pdf"
+    - name: RAG_CORPUS
+      value: "projects/133034677425/locations/us-east4/ragCorpora/7991637538768945152"
+    - name: LOCAL_TEMP_FILENAME
+      value: "ai-act-regulation-eu-20241689.pdf"
+
+  # Resource requirements
+  resources:
+    cpu: "2"
+    memory: "4Gi"
+    
+  # Scaling configuration
+  scaling:
+    minInstances: 1
+    maxInstances: 10
+    
+  # Health check
+  healthCheck:
+    enabled: true
+    path: /health

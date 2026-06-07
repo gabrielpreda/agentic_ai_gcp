@@ -1,0 +1,5 @@
+google-adk
+google-auth
+google-auth-httplib2
+python-dotenv
+mcp
