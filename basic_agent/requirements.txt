@@ -1,2 +1,5 @@
 google-adk
 google-genai
+google-cloud-aiplatform[agent_engines,adk]>=1.112
+cloudpickle==3.1.1
+pydantic==2.13.4

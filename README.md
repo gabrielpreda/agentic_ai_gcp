@@ -49,4 +49,6 @@ Learning Agentic AI with GCP - using ADK, A2A, Agent Platform, Agent Engine
 |  [simple_agent_service](simple_agent_service) | Deploy an agent on Cloud Run to test with `adk web` |
 |  [weather_agent_service](weather_agent_service) | Deploy an agent on Cloud Run with `FastAPI` |
 |  [basic_agent](basic_agent) | Deploy an agent with Agent Engine |
+|  [cloud_storage_observability](cloud_storage_observability) | Deploy and Observability an Agent using an MCP server |
+
 
