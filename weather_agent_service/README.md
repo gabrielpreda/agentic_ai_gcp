@@ -26,18 +26,18 @@ Then select `weather_agent_service`.
 Run: 
 
 ```bash
-gcloud run deploy weather_agent_service \
+gcloud run deploy weather-agent-service \
   --source . \
   --region us-central1 \
   --allow-unauthenticated \
   --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=TRUE \
-  --set-env-vars GOOGLE_CLOUD_PROJECT=PROJECT_ID \
+  --set-env-vars GOOGLE_CLOUD_PROJECT=gemini-first-439812 \
   --set-env-vars GOOGLE_CLOUD_LOCATION=us-central1
 ```
 ## Test on Cloud Run
 
 ```bash
-gcloud run services describe weather_agent_service \
+gcloud run services describe weather-agent-service \
   --region us-central1 \
   --format='value(status.url)'
 ```
