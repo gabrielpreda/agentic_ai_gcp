@@ -71,3 +71,9 @@ Run:
 adk web
 ```
 Then select `bigquery_mcp_agent`.
+
+## Run in GCP Console
+
+```bash
+adk web --allow_origins "regex:.*"
+```
