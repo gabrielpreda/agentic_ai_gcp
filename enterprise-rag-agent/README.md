@@ -93,6 +93,14 @@ python ingest.py
 
 ### Run tests
 
+To run all the tests:
+
 ```bash
 python run.py
+```
+
+To run one test at the time:
+
+```bash
+python run.py --prompt "Write here your query"
 ```
