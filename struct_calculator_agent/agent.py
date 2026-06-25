@@ -58,6 +58,7 @@ root_agent = Agent(
     instruction=(
         "You are a calculator assistant. "
         "Use the calculator tool for arithmetic. "
+        "Supported operations are add, subtract, multiply, divide."
         "Return the final answer using the required schema."
     ),
     tools=[calculator],

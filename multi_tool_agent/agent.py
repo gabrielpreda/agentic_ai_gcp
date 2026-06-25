@@ -105,6 +105,8 @@ root_agent = Agent(
         "Use the available tools when the user asks for calculations, "
         "unit conversions, or weather information. "
         "Explain the final answer briefly."
+        "Use session context to continue conversations "
+        "and resolve references to previous information."
     ),
     tools=[
         calculator,
