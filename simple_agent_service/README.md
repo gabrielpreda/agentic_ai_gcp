@@ -31,7 +31,7 @@ gcloud run deploy simple-agent \
   --region us-central1 \
   --allow-unauthenticated \
   --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=TRUE \
-  --set-env-vars GOOGLE_CLOUD_PROJECT=PROJECT_ID \
+  --set-env-vars GOOGLE_CLOUD_PROJECT=$PROJECT_ID \
   --set-env-vars GOOGLE_CLOUD_LOCATION=us-central1
 ```
 ## Test on Cloud Run
