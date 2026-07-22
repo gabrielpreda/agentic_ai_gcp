@@ -6,7 +6,7 @@
 Set the project and region:
 
 ```bash
-export PROJECT_ID="your-project-id"
+export PROJECT_ID="gemini-first-439812"
 export REGION="us-central1"
 ```
 
