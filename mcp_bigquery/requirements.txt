@@ -1,4 +1,4 @@
 google-adk
 google-cloud-bigquery
 python-dotenv
-mcp
+mcp>=1.24,<2

@@ -8,6 +8,8 @@ Create or choose a service account for the deployed agent.
 PROJECT_ID=YOUR_PROJECT_ID
 SERVICE_ACCOUNT_EMAIL=YOUR_SERVICE_ACCOUNT_EMAIL
 ```
+
+
 Grant it read-only access to Cloud Storage:
 
 ```bash
@@ -48,6 +50,6 @@ gcloud run deploy cloud-storage-agent \
   --source . \
   --region us-central1 \
   --allow-unauthenticated \
-  --service-account SERVICE_ACCOUNT_EMAIL \
-   --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=true,GOOGLE_CLOUD_PROJECT=PROJECT_ID,GOOGLE_CLOUD_LOCATION=us-central1,AGENT_MODEL=gemini-2.5-flash
+  --service-account $SERVICE_ACCOUNT_EMAIL \
+   --set-env-vars GOOGLE_GENAI_USE_VERTEXAI=true,GOOGLE_CLOUD_PROJECT=$PROJECT_ID,GOOGLE_CLOUD_LOCATION=us-central1,AGENT_MODEL=gemini-2.5-flash
 ```
