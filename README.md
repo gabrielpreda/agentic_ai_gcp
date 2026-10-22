@@ -27,9 +27,9 @@ Learning Agentic AI with GCP - using ADK, A2A, Agent Platform, Agent Engine
 
 | Resource | Description |
 |----------|---------|
-|  [enterprise-travel-agent](enterprise-travel-agent) | Multi-tool travel agent (include Agent as tools equiped with grounding tools & an API) |
+|  [enterprise_travel_agent](enterprise_travel_agent) | Multi-tool travel agent (include Agent as tools equiped with grounding tools & an API) |
 |  [mcp_filesystem](mcp_filesystem) | Agent using a tool through an MCP server |
-|  [enterprise-rag-agent](enterprise-rag-agent) | Enterprise RAG Assistant |
+|  [enterprise_rag_agent](enterprise_rag_agent) | Enterprise RAG Assistant |
 |  [mcp_biguery](mcp_bigquery) | BigQuery Analytics Agent - uses GCP MCP Server |
 
 
