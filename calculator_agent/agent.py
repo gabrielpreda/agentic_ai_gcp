@@ -1,7 +1,7 @@
 from google.adk.agents import Agent
 
 
-def calculator(a: float, b: float, operation: str) -> float:
+def calculator(a: float, b: float, operation: str) -> float | str:
     if operation == "add":
         return a + b
     if operation == "subtract":
@@ -10,7 +10,7 @@ def calculator(a: float, b: float, operation: str) -> float:
         return a * b
     if operation == "divide":
         if b == 0:
-            raise Exception("Cannot divide by zero")
+            return "Cannot divide by zero. Please provide a non-zero divisor."
         return a / b
 
     raise Exception("Unsupported operation")
@@ -22,7 +22,9 @@ root_agent = Agent(
     instruction=(
         "You are a helpful assistant with calculator capabilities. "
         "Use the calculator tool for arithmetic. "
-        "Supported operations are add, subtract, multiply, divide."
+        "Supported operations are add, subtract, multiply, divide. "
+        "If division by zero is requested, explain that it is undefined "
+        "and ask the user for a non-zero divisor."
     ),
     tools = [calculator]
 )
