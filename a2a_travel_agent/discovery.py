@@ -11,8 +11,8 @@ from a2a.types import (
     AgentCapabilities,
     AgentCard,
     AgentSkill,
-    TransportProtocol,
 )
+from a2a.types import TransportProtocol
 from a2a.utils.constants import AGENT_CARD_WELL_KNOWN_PATH
 
 from agent_a2a_server import create_agent_a2a_server

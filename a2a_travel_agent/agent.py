@@ -10,8 +10,8 @@ from a2a.types import (
     AgentCapabilities,
     AgentCard,
     AgentSkill,
-    TransportProtocol,
 )
+from a2a.types import TransportProtocol
 
 from agent_a2a_server import create_agent_a2a_server
 from composer import composer_agent
