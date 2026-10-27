@@ -86,7 +86,7 @@ improved_instructions = """
 root_agent = Agent(
     name="sales_analysis_agent",
     model="gemini-2.5-flash",
-    instruction=improved_instructions,
+    instruction=simple_instructions,
     tools=[
         analyze_sales,
     ],
