@@ -5,3 +5,4 @@ fastapi
 uvicorn
 httpx
 python-dotenv
+deepeval
